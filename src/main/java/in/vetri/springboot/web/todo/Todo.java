@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Size;
 
 @Entity(name = "todo")
@@ -15,17 +16,19 @@ public class Todo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "username")
 	private String username;
 
 	@Size(min = 10, message = "Enter atleast 10 characters")
 	private String description;
+
+	@Future(message = "Target date must be future date")
 	private LocalDate targetDate;
 	private boolean done;
-	
+
 	public Todo() {
-		
+
 	}
 
 	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
